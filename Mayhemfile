@@ -1,0 +1,6 @@
+project: rnshah9/ccextractor
+target: ccextractor
+tests: null
+
+cmds:
+  - cmd: /repo/linux/ccextractor @@

@@ -1,0 +1,11 @@
+# Build Stage
+FROM --platform=linux/amd64 ubuntu:20.04 as builder
+
+## Install build dependencies.
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y vim less man wget tar git gzip unzip make cmake software-properties-common curl
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libglew-dev libglfw3-dev cmake gcc libcurl4-gnutls-dev tesseract-ocr libtesseract-dev libleptonica-dev clang libclang-dev
+
+ADD . /repo
+WORKDIR /repo/linux
+RUN ./build -without-rust
