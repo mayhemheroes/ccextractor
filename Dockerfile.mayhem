@@ -1,4 +1,3 @@
-# Build Stage
 FROM --platform=linux/amd64 ubuntu:20.04 as builder
 
 ## Install build dependencies.
@@ -9,3 +8,12 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libglew-dev libglfw3-dev c
 ADD . /repo
 WORKDIR /repo/linux
 RUN ./build -without-rust
+
+RUN mkdir -p /deps
+RUN ldd /repo/linux/ccextractor | tr -s '[:blank:]' '\n' | grep '^/' | xargs -I % sh -c 'cp % /deps;'
+
+FROM ubuntu:20.04 as package
+
+COPY --from=builder /deps /deps
+COPY --from=builder /repo/linux/ccextractor /repo/linux/ccextractor
+ENV LD_LIBRARY_PATH=/deps
