@@ -29,4 +29,4 @@ FROM ubuntu:20.04 as package
 COPY --from=builder /repo/linux/ccextractor /repo/linux/ccextractor
 
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libtesseract-dev
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libtesseract-dev libgpac4
