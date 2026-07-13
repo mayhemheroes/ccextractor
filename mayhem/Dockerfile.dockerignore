@@ -1,0 +1,15 @@
+# Per-Dockerfile ignore for mayhem/Dockerfile (BuildKit) — overrides the root
+# .dockerignore, which excludes .git/ (the commit image must bake the full git
+# history, §6.2 item 2). Keep only build-artifact exclusions.
+linux/ccextractor
+linux/rust/
+linux/*.o
+linux/*.a
+mac/ccextractor
+mac/rust/
+build/
+build_*/
+.vscode/
+.idea/
+*.swp
+*.swo

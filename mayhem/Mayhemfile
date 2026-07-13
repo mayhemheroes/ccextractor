@@ -1,0 +1,11 @@
+# Historical target name preserved from the original mayhemheroes integration
+# (project ccextractor / target ccextractor) so Mayhem run history stays attached.
+project: ccextractor
+target: ccextractor
+
+# /mayhem/linux/ccextractor is now an in-process libFuzzer harness (built by
+# mayhem/build.sh from mayhem/fuzz_harness.c) — Mayhem drives it as a libFuzzer
+# target, so no @@ file argument. See fuzz_harness.c for why the raw CLI target
+# was converted. Leak detection is left ON (persistent harness, not a batch tool).
+cmds:
+  - cmd: /mayhem/linux/ccextractor
